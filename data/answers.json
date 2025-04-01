@@ -1,0 +1,21 @@
+{
+  "answers": [
+    {
+      "request": "example search query",
+      "results": [
+        {
+          "doc_id": 1,
+          "rank": 0.8
+        },
+        {
+          "doc_id": 0,
+          "rank": 0.5
+        }
+      ]
+    },
+    {
+      "request": "another test",
+      "results": []
+    }
+  ]
+}

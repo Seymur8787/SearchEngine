@@ -1,0 +1,13 @@
+{
+  "config": {
+    "max_responses": 5
+  },
+  "files": [
+    "data/doc1.txt",
+    "data/doc2.txt"
+  ],
+  "requests": [
+    "example query",
+    "another search"
+  ]
+}
