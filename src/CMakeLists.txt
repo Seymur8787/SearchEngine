@@ -1,17 +1,19 @@
-﻿# Указание всех исходных файлов
-file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
-
-# Создаём библиотеку из исходников
-add_library(Search-ENGINELib ${SOURCES})
-
-# Подключаем заголовочные файлы
-target_include_directories(Search-ENGINELib PUBLIC
-    ${CMAKE_SOURCE_DIR}/includes
-    ${json_SOURCE_DIR}/single_include  # Подключаем JSON
+﻿# Указываем исходники
+set(SOURCES
+    main.cpp
+    converter_json.cpp
+    inverted_index.cpp
+    search_server.cpp
 )
 
-# Создаём исполняемый файл из main.cpp
-add_executable(Search-ENGINE main.cpp)
+# Добавляем исполняемый файл
+add_executable(Search-ENGINE ${SOURCES})
 
-# Линкуем исполняемый файл с библиотекой
-target_link_libraries(Search-ENGINE PRIVATE Search-ENGINELib)
+# Указываем директории заголовков
+target_include_directories(Search-ENGINE PRIVATE
+    ${CMAKE_SOURCE_DIR}/includes
+    ${json_SOURCE_DIR}/include    
+)
+
+# Подключаем библиотеки
+target_link_libraries(Search-ENGINE PRIVATE nlohmann_json::nlohmann_json)

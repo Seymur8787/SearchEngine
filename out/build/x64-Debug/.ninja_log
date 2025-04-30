@@ -1,0 +1,8 @@
+# ninja log v6
+18	971	7677182517277956	_deps/googletest-build/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	8f26b425489774d5
+13	2096	7677182517235109	_deps/googletest-build/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	8fdfedbae3c2c747
+38	837	7677182896985499	src/CMakeFiles/Search-ENGINE.dir/inverted_index.cpp.obj	f1e02c56b06625a0
+43	844	7677182897015479	src/CMakeFiles/Search-ENGINE.dir/search_server.cpp.obj	65e76546c7bbda4f
+30	1654	7677182896891729	src/CMakeFiles/Search-ENGINE.dir/main.cpp.obj	79ff55042a759d1a
+35	2293	7677182896941691	src/CMakeFiles/Search-ENGINE.dir/converter_json.cpp.obj	8050dda91ecb29e6
+2294	2613	7677182919537546	C:/Users/user/Search-ENGINE/bin/Search-ENGINE.exe	f06df53e0ff613f7

@@ -1,13 +1,13 @@
 ﻿#include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
-#include "../includes/converter_json.h"
+#include "converter_json.h"
 
 using json = nlohmann::json;
 
-// Вспомогательная функция для чтения JSON
 json ReadJSON(const std::string& filename) {
     std::ifstream file(filename);
+    std::cout << filename << std::endl;
     if (!file.is_open()) {
         throw std::runtime_error("Не удалось открыть файл: " + filename);
     }
@@ -17,14 +17,13 @@ json ReadJSON(const std::string& filename) {
     return j;
 }
 
-// Конструктор класса, загружающий конфигурацию при создании объекта
 ConverterJSON::ConverterJSON() {
     try {
-        config = ReadJSON("config.json");
+        config = ReadJSON("..\\data\\config.json");
     }
     catch (const std::exception& e) {
         std::cerr << "Ошибка загрузки config.json: " << e.what() << std::endl;
-        config = json::object(); // создаём пустой объект, чтобы не падало
+        config = json::object();
     }
 }
 
@@ -50,44 +49,51 @@ std::vector<std::string> ConverterJSON::GetTextDocuments() {
 }
 
 int ConverterJSON::GetResponsesLimit() {
-    if (!config.contains("config") || !config["config"].contains("max_responses")) {
-        return 5; // Значение по умолчанию, если в config.json нет max_responses
+    if (!config.contains("max_responses")) {
+        return 5;
     }
-    return config["config"]["max_responses"].get<int>();
+    return config["max_responses"].get<int>();
 }
 
 std::vector<std::string> ConverterJSON::GetRequests() {
-    if (!config.contains("requests")) {
-        throw std::runtime_error("Ошибка: в config.json отсутствует поле 'requests'");
+    json requests = ReadJSON("..\\data\\requests.json");
+    if (!requests.contains("requests")) {
+        throw std::runtime_error("Ошибка: в requests.json отсутствует поле 'requests'");
     }
-    return config["requests"].get<std::vector<std::string>>();
+    return requests["requests"].get<std::vector<std::string>>();
 }
 
-void ConverterJSON::PutAnswers(const std::vector<std::vector<std::pair<int, float>>>& answers) {
-    json output;
-    output["answers"] = json::object();
+void ConverterJSON::PutAnswers(const std::vector<std::vector<RelativeIndex>>& answers) {
+    json j;
+    j["answers"] = json::object();
 
     for (size_t i = 0; i < answers.size(); ++i) {
-        std::string requestKey = "request" + std::to_string(i + 1);
-        json requestResult;
+        std::string request_name = "request" + std::string(3 - std::to_string(i + 1).length(), '0') + std::to_string(i + 1);
+        json request_result;
 
         if (answers[i].empty()) {
-            requestResult["result"] = "empty"; // Исправлено с "false" на "empty"
+            request_result["result"] = "false";
         }
         else {
-            requestResult["result"] = "true";
-            requestResult["relevance"] = json::array();
-            for (const auto& [docID, rank] : answers[i]) {
-                requestResult["relevance"].push_back({ {"doc_id", docID}, {"rank", rank} });
+            request_result["result"] = "true";
+
+            json relevance = json::array();
+            for (const auto& ri : answers[i]) {
+                relevance.push_back({
+                    {"docid", ri.doc_id},
+                    {"rank", std::round(ri.rank * 1000.0) / 1000.0}
+                    });
             }
+
+            request_result["relevance"] = relevance;
         }
 
-        output["answers"][requestKey] = requestResult;
+        j["answers"][request_name] = request_result;
     }
 
-    std::ofstream outFile("answers.json");
-    if (!outFile.is_open()) {
-        throw std::runtime_error("Не удалось записать файл answers.json");
+    std::ofstream file("..\\data\\answers.json");
+    if (file.is_open()) {
+        file << std::setw(4) << j;
+        file.close();
     }
-    outFile << output.dump(4);
 }

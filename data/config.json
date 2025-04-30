@@ -1,13 +1,9 @@
 {
-  "config": {
-    "max_responses": 5
-  },
-  "files": [
-    "data/doc1.txt",
-    "data/doc2.txt"
-  ],
-  "requests": [
-    "example query",
-    "another search"
-  ]
+    "config_name": "Search Engine Settings",
+    "files": [
+        "..\\data\\doc1.txt",
+        "..\\data\\doc2.txt"
+    ],
+    "max_responses": 5,
+    "version": "0.1"
 }

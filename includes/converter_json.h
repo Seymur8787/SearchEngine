@@ -3,19 +3,20 @@
 
 #include <vector>
 #include <string>
-#include <nlohmann/json.hpp>  // Подключаем JSON-библиотеку
+#include <nlohmann/json.hpp>
+#include "search_server.h"  // сюда попала структура RelativeIndex
 
 class ConverterJSON {
 public:
-    ConverterJSON(); // Добавляем конструктор
+    ConverterJSON();
 
     std::vector<std::string> GetTextDocuments();
     int GetResponsesLimit();
     std::vector<std::string> GetRequests();
-    void PutAnswers(const std::vector<std::vector<std::pair<int, float>>>& answers);
+    void PutAnswers(const std::vector<std::vector<RelativeIndex>>& answers);
 
 private:
-    nlohmann::json config; // Добавляем приватное поле для хранения конфигурации
+    nlohmann::json config;
 };
 
 #endif // CONVERTER_JSON_H

@@ -1,21 +1,43 @@
 {
-  "answers": [
-    {
-      "request": "example search query",
-      "results": [
-        {
-          "doc_id": 1,
-          "rank": 0.8
+    "answers": {
+        "request001": {
+            "relevance": [
+                {
+                    "docid": 0,
+                    "rank": 1.0
+                },
+                {
+                    "docid": 1,
+                    "rank": 0.5
+                }
+            ],
+            "result": "true"
         },
-        {
-          "doc_id": 0,
-          "rank": 0.5
+        "request002": {
+            "relevance": [
+                {
+                    "docid": 1,
+                    "rank": 1.0
+                },
+                {
+                    "docid": 0,
+                    "rank": 0.25
+                }
+            ],
+            "result": "true"
+        },
+        "request003": {
+            "relevance": [
+                {
+                    "docid": 0,
+                    "rank": 1.0
+                },
+                {
+                    "docid": 1,
+                    "rank": 0.5
+                }
+            ],
+            "result": "true"
         }
-      ]
-    },
-    {
-      "request": "another test",
-      "results": []
     }
-  ]
 }
