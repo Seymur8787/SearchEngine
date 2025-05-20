@@ -32,3 +32,10 @@ CMakeError.log
 # Temporary files
 *.tmp
 *.swp
+# В самом конце файла .gitignore:
+!*.sln
+!*.vcxproj
+!*.vcxproj.filters
+!*.cpp
+!*.h
+!CMakeLists.txt

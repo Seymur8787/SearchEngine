@@ -91,9 +91,22 @@ void ConverterJSON::PutAnswers(const std::vector<std::vector<RelativeIndex>>& an
         j["answers"][request_name] = request_result;
     }
 
-    std::ofstream file("..\\data\\answers.json");
-    if (file.is_open()) {
+    try {
+        std::ofstream file("..\\data\\answers.json");
+        if (!file.is_open()) {
+            throw std::ios_base::failure("Не удалось открыть файл для записи. Возможно: нет прав, файл занят или диск переполнен.");
+        }
+
         file << std::setw(4) << j;
+        if (file.fail()) {
+            throw std::ios_base::failure("Ошибка при записи в файл: возможно, закончилось место на диске.");
+        }
+
         file.close();
+    }
+    catch (const std::exception& e) {
+        std::cerr << "[Ошибка] Не удалось сохранить answers.json: " << e.what() << std::endl;
+        // Можно выбросить дальше, если нужно:
+        // throw;
     }
 }
