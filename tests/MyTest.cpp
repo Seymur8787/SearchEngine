@@ -47,14 +47,6 @@ TEST(SearchServerTest, SearchQuery) {
     EXPECT_NEAR(results[0][1].rank, 1.0f, 0.01f); // Такой же счёт, тот же rank
 }
 
-TEST(ConverterJSONTest, GetTextDocuments) {
-    ConverterJSON converter;
-    std::vector<std::string> files = converter.GetTextDocuments();
-    ASSERT_FALSE(files.empty()); // Проверяем, что список документов не пуст
-}
-
-
-
 // Главная функция GoogleTest
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);

@@ -7,19 +7,20 @@ project(Search-ENGINE VERSION 1.0 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Устанавливаем директорию для бинарников (опционально для VS)
+# Директория для исполняемых файлов
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
-# Подключаем FetchContent для зависимостей
+# Подключаем FetchContent
 include(FetchContent)
-#find_package(fmt CONFIG REQUIRED)
 
-# JSON for Modern C++
-FetchContent_Declare(json URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz)
+# Подключаем nlohmann/json
+FetchContent_Declare(
+    json 
+    URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
+)
 FetchContent_MakeAvailable(json)
 
-
-# GoogleTest
+# Подключаем GoogleTest
 FetchContent_Declare(
     googletest
     GIT_REPOSITORY https://github.com/google/googletest.git
@@ -27,11 +28,9 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(googletest)
 
-# Подключаем поддиректории с логикой и тестами
+# Поддиректории с исходниками и тестами
 add_subdirectory(src)
 add_subdirectory(tests)
-
-target_link_libraries(Search-ENGINE PRIVATE nlohmann_json::nlohmann_json)
 
 # Включаем тестирование
 enable_testing()

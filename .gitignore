@@ -1,41 +1,32 @@
-# Windows
-Thumbs.db
-ehthumbs.db
-
-# CMake
-CMakeFiles/
-CMakeCache.txt
+# CMake build directories
+/build/
+/out/
+/bin/
+/CMakeFiles/
+/CMakeCache.txt
 Makefile
 cmake_install.cmake
 CMakeOutput.log
 CMakeError.log
 
-# Visual Studio
-.vs/
-.vscode/
+# VS specific
+*.vcxproj*
+*.sln
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
-
-# Binaries
-*.exe
-*.out
-*.o
-*.obj
-*.lib
-*.dll
-
-# Log files
+*.pdb
+*.idb
+*.vs
+*.ilk
 *.log
+*.vs/
+*.ncb
 
-# Temporary files
-*.tmp
-*.swp
-# В самом конце файла .gitignore:
-!*.sln
-!*.vcxproj
-!*.vcxproj.filters
-!*.cpp
-!*.h
-!CMakeLists.txt
+# Ninja build logs
+*.ninja_log
+*.ninja_deps
+
+# CTest
+Testing/
