@@ -19,7 +19,7 @@ json ReadJSON(const std::string& filename) {
 
 ConverterJSON::ConverterJSON() {
     try {
-        config = ReadJSON("..\\data\\config.json");
+        config = ReadJSON("config.json");
     }
     catch (const std::exception& e) {
         std::cerr << "Ошибка загрузки config.json: " << e.what() << std::endl;
@@ -56,7 +56,7 @@ int ConverterJSON::GetResponsesLimit() {
 }
 
 std::vector<std::string> ConverterJSON::GetRequests() {
-    json requests = ReadJSON("..\\data\\requests.json");
+    json requests = ReadJSON("requests.json");
     if (!requests.contains("requests")) {
         throw std::runtime_error("Ошибка: в requests.json отсутствует поле 'requests'");
     }
@@ -92,7 +92,7 @@ void ConverterJSON::PutAnswers(const std::vector<std::vector<RelativeIndex>>& an
     }
 
     try {
-        std::ofstream file("..\\data\\answers.json");
+        std::ofstream file("answers.json");
         if (!file.is_open()) {
             throw std::ios_base::failure("Не удалось открыть файл для записи. Возможно: нет прав, файл занят или диск переполнен.");
         }

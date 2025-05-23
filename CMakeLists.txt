@@ -34,3 +34,9 @@ add_subdirectory(tests)
 
 # Включаем тестирование
 enable_testing()
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.json
+               ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json COPYONLY)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/requests.json
+               ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/requests.json COPYONLY)
