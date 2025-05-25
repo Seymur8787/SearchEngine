@@ -1,6 +1,4 @@
 ﻿cmake_minimum_required(VERSION 3.16)
-
-# Название проекта
 project(Search-ENGINE VERSION 1.0 LANGUAGES CXX)
 
 # Устанавливаем стандарт C++
@@ -15,7 +13,7 @@ include(FetchContent)
 
 # Подключаем nlohmann/json
 FetchContent_Declare(
-    json 
+    json
     URL https://github.com/nlohmann/json/releases/download/v3.12.0/json.tar.xz
 )
 FetchContent_MakeAvailable(json)
@@ -35,8 +33,6 @@ add_subdirectory(tests)
 # Включаем тестирование
 enable_testing()
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.json
-               ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json COPYONLY)
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/requests.json
-               ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/requests.json COPYONLY)
+# Копируем конфигурационные файлы в выходную директорию
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.json ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json COPYONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/requests.json ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/requests.json COPYONLY)

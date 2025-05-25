@@ -1,24 +1,19 @@
-﻿# Указываем исходники для библиотеки
+﻿# Указываем исходники для основного приложения
 set(SOURCES
     converter_json.cpp
     inverted_index.cpp
     search_server.cpp
+    main.cpp
 )
 
-# Создаём статическую библиотеку
-add_library(Search-ENGINELib STATIC ${SOURCES})
+# Создаём исполняемый файл
+add_executable(Search-ENGINE ${SOURCES})
 
-# Указываем заголовочные файлы
-target_include_directories(Search-ENGINELib PUBLIC
+# Подключаем заголовочные файлы
+target_include_directories(Search-ENGINE PRIVATE
     ${CMAKE_SOURCE_DIR}/includes
     ${json_SOURCE_DIR}/include
 )
 
-# Подключаем JSON-библиотеку
-target_link_libraries(Search-ENGINELib PUBLIC nlohmann_json::nlohmann_json)
-
-# Создаём исполняемый файл с main.cpp
-add_executable(Search-ENGINE main.cpp)
-
-# Линкуем основную библиотеку к исполняемому файлу
-target_link_libraries(Search-ENGINE PRIVATE Search-ENGINELib)
+# Подключаем внешние библиотеки
+target_link_libraries(Search-ENGINE PRIVATE nlohmann_json::nlohmann_json)

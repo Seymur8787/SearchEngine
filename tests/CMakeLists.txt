@@ -1,14 +1,22 @@
-﻿# Создание исполняемого файла для тестов
-add_executable(MyTest MyTest.cpp)
+﻿# Указываем исходники, которые нужны для тестов
+add_executable(MyTest
+    MyTest.cpp
+    ${CMAKE_SOURCE_DIR}/src/converter_json.cpp
+    ${CMAKE_SOURCE_DIR}/src/inverted_index.cpp
+    ${CMAKE_SOURCE_DIR}/src/search_server.cpp
+)
 
+# Подключаем заголовки
+target_include_directories(MyTest PRIVATE
+    ${CMAKE_SOURCE_DIR}/includes
+)
 
-# Линкуем тесты с GoogleTest, основной библиотекой и json
+# Линкуем зависимости
 target_link_libraries(MyTest PRIVATE
     gtest
     gtest_main
-    Search-ENGINELib
-    nlohmann_json::nlohmann_json     
+    nlohmann_json::nlohmann_json
 )
 
-# Добавление теста для CTest
+# Добавляем в CTest
 add_test(NAME MyTest COMMAND MyTest)
