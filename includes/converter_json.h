@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <nlohmann/json.hpp>
-#include "search_server.h"  // сюда попала структура RelativeIndex
+#include "search_server.h"  
 
 class ConverterJSON {
 public:
@@ -19,4 +19,4 @@ private:
     nlohmann::json config;
 };
 
-#endif // CONVERTER_JSON_H
+#endif 

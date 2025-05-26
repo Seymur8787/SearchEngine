@@ -1,8 +1,8 @@
 {
     "config_name": "Search Engine Settings",
     "files": [
-        "doc1.txt",
-        "doc2.txt"
+        "files/doc1.txt",
+        "files/doc2.txt"
     ],
     "max_responses": 5,
     "version": "0.1"

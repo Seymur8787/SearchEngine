@@ -33,6 +33,4 @@ add_subdirectory(tests)
 # Включаем тестирование
 enable_testing()
 
-# Копируем конфигурационные файлы в выходную директорию
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.json ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/config.json COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/requests.json ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/requests.json COPYONLY)
+file(COPY ${CMAKE_SOURCE_DIR}/files DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})

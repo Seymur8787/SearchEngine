@@ -1,7 +1,8 @@
 # CMake build directories
 /build/
 /out/
-
+/bin/
+/vcpkg/
 /CMakeFiles/
 /CMakeCache.txt
 Makefile
