@@ -9,6 +9,7 @@ Makefile
 cmake_install.cmake
 CMakeOutput.log
 CMakeError.log
+CMakeSettings.json
 
 # VS specific
 *.vcxproj*
